@@ -1,9 +1,6 @@
+.DS_STORE
 .idea/*
 venv/*
 __pycache__/*
 /__pycache__/*
-__pycache__
-/__pycache__/filters.cpython-38.pyc
-/__pycache__/database.cpython-38.pyc
 *.pyc
-/__pycache__/write.cpython-38.pyc
