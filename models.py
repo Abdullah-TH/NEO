@@ -14,8 +14,6 @@ A `NearEarthObject` maintains a collection of its close approaches, and a
 The functions that construct these objects use information extracted from the
 data files from NASA, so these objects should be able to handle all of the
 quirks of the data set, such as missing names and unknown diameters.
-
-You'll edit this file in Task 1.
 """
 from helpers import cd_to_datetime, datetime_to_str
 
@@ -32,8 +30,6 @@ class NearEarthObject:
     initialized to an empty collection, but eventually populated in the
     `NEODatabase` constructor.
     """
-    # TODO: How can you, and should you, change the arguments to this constructor?
-    # If you make changes, be sure to update the comments in this file.
     def __init__(self, designation, name, diameter, hazardous):
         """Create a new `NearEarthObject`.
 
@@ -42,17 +38,10 @@ class NearEarthObject:
         :param diameter: The diameter, in kilometers, of this NearEarthObject.
         :param hazardous: Whether or not this NearEarthObject is potentially hazardous.
         """
-        # TODO: Assign information from the arguments passed to the constructor
-        # onto attributes named `designation`, `name`, `diameter`, and `hazardous`.
-        # You should coerce these values to their appropriate data type and
-        # handle any edge cases, such as a empty name being represented by `None`
-        # and a missing diameter being represented by `float('nan')`.
         self.designation = designation
         self.name = name if name else None
         self.diameter = float(diameter) if diameter else float('nan')
         self.hazardous = hazardous == 'Y'
-
-        # Create an empty initial collection of linked approaches.
         self.approaches = []
 
     @property
@@ -88,8 +77,6 @@ class CloseApproach:
     private attribute, but the referenced NEO is eventually replaced in the
     `NEODatabase` constructor.
     """
-    # TODO: How can you, and should you, change the arguments to this constructor?
-    # If you make changes, be sure to update the comments in this file.
     def __init__(self, designation, time, distance, velocity):
         """Create a new `CloseApproach`.
 
@@ -98,16 +85,10 @@ class CloseApproach:
         :param distance: The nominal approach distance, in astronomical units, of the NEO to Earth at the closest point.
         :param velocity: The velocity, in kilometers per second, of the NEO relative to Earth at the closest point.
         """
-        # TODO: Assign information from the arguments passed to the constructor
-        # onto attributes named `_designation`, `time`, `distance`, and `velocity`.
-        # You should coerce these values to their appropriate data type and handle any edge cases.
-        # The `cd_to_datetime` function will be useful.
         self._designation = designation
         self.time = cd_to_datetime(time)
         self.distance = float(distance) if distance else float('nan')
         self.velocity = float(velocity) if velocity else float('nan')
-
-        # Create an attribute for the referenced NEO, originally None.
         self.neo = None
 
     @property
@@ -123,16 +104,10 @@ class CloseApproach:
         formatted string that can be used in human-readable representations and
         in serialization to CSV and JSON files.
         """
-        # TODO: Use this object's `.time` attribute and the `datetime_to_str` function to
-        # build a formatted representation of the approach time.
-        # TODO: Use self.designation and self.name to build a fullname for this object.
         return datetime_to_str(self.time)
 
     def __str__(self):
         """Return `str(self)`."""
-        # TODO: Use this object's attributes to return a human-readable string representation.
-        # The project instructions include one possibility. Peek at the __repr__
-        # method for examples of advanced string formatting.
         return f"At {self.time_str}, '{self.neo.fullname}' approaches Earth at a distance of " \
                f"{self.distance:.2f} au and a velocity of {self.velocity:.2f} km/s."
 
